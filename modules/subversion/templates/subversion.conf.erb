@@ -1,0 +1,37 @@
+# Make sure you uncomment the following if they are commented out
+  LoadModule dav_svn_module modules/mod_dav_svn.so
+  LoadModule authz_svn_module modules/mod_authz_svn.so
+
+# Add the following to allow a basic authentication and point Apache to where the actual repository resides.
+
+ServerName bazaarss.com:80
+
+<% @repo_name.each do |i| -%>
+<Location /<%= i %>>
+    DAV svn
+    SVNPath /var/www/svn/<%= i %>
+    AuthType Basic
+    AuthName "Subversion repos"
+    AuthUserFile /etc/svn-auth-conf
+    Require valid-user
+</Location>
+<% end -%>
+
+<VirtualHost subversion.bazaarss.com:80>
+    ServerName subversion.bazaarss.com
+    Redirect "/" "https://subversion.bazaarss.com/"
+</VirtualHost>
+
+<VirtualHost subversion.bazaarss.com:443>
+    ServerName subversion.bazaarss.com
+    ServerAlias *.bazaarss.com
+    ServerAdmin admin@bazaarss.com
+    ErrorLog /var/log/httpd/subversion.err
+    CustomLog /var/log/httpd/subversion.log combined
+    SSLEngine on
+    SSLCertificateFile /etc/pki/tls/certs/bazaarss.crt
+    SSLCertificateKeyFile /etc/pki/tls/private/bazaarss.key
+    ProxyPreserveHost On
+    ProxyRequests Off
+</VirtualHost>
+

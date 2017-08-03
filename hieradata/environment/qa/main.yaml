@@ -1,0 +1,11 @@
+---
+$httpd::listen: '8080'
+$subversion::svn_admin::svn_admin: 'akova'
+$subversion::svn_admin::admin_password: '$apr1$O1pbC5m.$B6yi5AROMznx8G4Ii8znY.'
+$subversion::svn_users::svn_user: 'user1'
+$subversion::svn_user::user_password1: '$apr1$ATIZlXfX$DiY11iPa4MSf2n0gWRp7M1'
+$subversion::svn_users::svn_user: 'user2'
+$subversion::svn_user::user_password: '$apr1$pHDC3jHJ$ljNIfgxSYvbMEGY5LbVDl/'
+$subversion::svn_users::svn_user: 'user3'
+$subversion::svn_user::user_password: '$apr1$gQkqWhFP$49YjuaLAGZq/kLYIqLfOz/'
+
