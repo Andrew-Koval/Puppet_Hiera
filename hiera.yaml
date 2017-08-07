@@ -4,7 +4,7 @@
   :datadir: /etc/puppet/hieradata
 :hierarchy:
   - "environment/%{::env}/main"
-
+  - "%{::osfamily}"
 
 
 ---
